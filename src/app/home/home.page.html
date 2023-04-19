@@ -1,20 +1,26 @@
-<ion-header [translucent]="true">
+<ion-header #header [translucent]="true">
   <ion-toolbar>
-    <ion-title>
-      Blank
-    </ion-title>
+    <ion-buttons slot="start">
+      <ion-button shape="round">
+        <ion-icon slot="icon-only" name="close"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-title>title</ion-title>
+    <ion-buttons slot="end">
+      <ion-button shape="round">
+        <ion-icon slot="icon-only" name="share"></ion-icon>
+      </ion-button>
+      <ion-button shape="round">
+        <ion-icon slot="icon-only" name="heart"></ion-icon>
+      </ion-button>
+    </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Blank</ion-title>
-    </ion-toolbar>
-  </ion-header>
-
-  <div id="container">
-    <strong>Ready to create an app?</strong>
-    <p>Start with Ionic <a target="_blank" rel="noopener noreferrer" href="https://ionicframework.com/docs/components">UI Components</a></p>
-  </div>
+<ion-content fullscreen="true" scrollEvents="true" (ionScroll)='onContentScroll($event)'>
+  <ion-list>
+    <ion-item detail="true" *ngFor="let show of details">
+      <ion-label>{{show}}</ion-label>
+    </ion-item>
+  </ion-list>
 </ion-content>
