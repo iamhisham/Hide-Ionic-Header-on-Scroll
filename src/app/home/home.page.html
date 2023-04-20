@@ -1,5 +1,5 @@
-<ion-header #header [translucent]="true">
-  <ion-toolbar>
+<ion-header #header [translucent]="true" class="ion-no-border">
+  <ion-toolbar class="custom-toolbar">
     <ion-buttons slot="start">
       <ion-button shape="round">
         <ion-icon slot="icon-only" name="close"></ion-icon>
@@ -16,8 +16,13 @@
     </ion-buttons>
   </ion-toolbar>
 </ion-header>
+<ion-content fullscreen="false" scrollEvents="true" (ionScroll)='onContentScroll($event)'>
+  <ion-header #subcontent class="ion-border">
+    <ion-toolbar>
+      <ion-title>welcome</ion-title>
 
-<ion-content fullscreen="true" scrollEvents="true" (ionScroll)='onContentScroll($event)'>
+    </ion-toolbar>
+  </ion-header>
   <ion-list>
     <ion-item detail="true" *ngFor="let show of details">
       <ion-label>{{show}}</ion-label>

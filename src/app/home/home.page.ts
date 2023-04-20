@@ -12,6 +12,9 @@ import { IonicModule } from '@ionic/angular';
 })
 export class HomePage implements OnInit {
   @ViewChild("header") header: HTMLElement;
+  @ViewChild("subcontent") subcontent: HTMLElement;
+
+
   details = ['welcome', 'jack', 'joe doe', 'welcome', 'jack', 'joe doe', 'welcome', 'jack', 'joe doe', 'welcome', 'jack', 'joe doe', 'welcome', 'jack', 'joe doe', 'welcome', 'jack', 'joe doe', 'welcome', 'jack', 'joe doe', 'welcome', 'jack', 'joe doe', 'welcome', 'jack', 'joe doe', 'welcome', 'jack', 'joe doe', 'welcome', 'jack', 'joe doe', 'welcome', 'jack', 'joe doe'];
 
   constructor(public element: ElementRef,
@@ -19,16 +22,28 @@ export class HomePage implements OnInit {
 
   ngOnInit() {
   }
+
   ionViewWillEnter() {
-    this.renderer.setStyle(this.header['el'], 'webkitTransition', 'top 700ms');
+    this.renderer.addClass(this.header['el'], 'animated-delay');
+    this.renderer.addClass(this.subcontent['el'], 'animated-delay');
   }
 
   onContentScroll(event: any) {
+
     if (event.detail.scrollTop >= 50) {
+      // scroll down
       this.renderer.setStyle(this.header['el'], 'top', '-76px');
+      this.renderer.setStyle(this.subcontent['el'], 'position', 'fixed');
+      this.renderer.setStyle(this.subcontent['el'], 'top', '0');
     } else {
+      // scroll up(initial)
       this.renderer.setStyle(this.header['el'], 'top', '0px');
+      this.renderer.removeStyle(this.subcontent['el'], 'position');
+      this.renderer.removeStyle(this.subcontent['el'], 'top');
     }
+
+
+
   }
 
 }
